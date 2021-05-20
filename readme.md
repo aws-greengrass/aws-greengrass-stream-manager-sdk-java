@@ -17,10 +17,14 @@ The environment where Stream Manager is running on needs to be able to run Java 
 
 For this example, you will need to download Gradle. For instructions, go to the gradle website, [https://gradle.org/](https://gradle.org)
 
-Follow the steps below.
+Two types of jar files are provided. The `aws-greengrass-stream-manager-sdk-java-slim.jar` in `sdk-slim` directory is a 
+jar file with no dependencies built in. This is the recommended way to consume Stream Manager SDK. `aws-greengrass-stream-manager-sdk-java.jar` in
+`sdk` directory is provided for backward compatibility for developers already using it.
+
+For `aws-greengrass-stream-manager-sdk-java-slim.jar`, follow the example below:
 
 *   Create `libs` folder.
-*   Copy `aws-greengrass-stream-manager-sdk-java.jar` to `libs` folder.
+*   Copy `aws-greengrass-stream-manager-sdk-java-slim.jar` to `libs` folder.
 *   Example `build.gradle` file looks like the following. You may add additional dependencies as necessary for your function.  
 
     ```java  
@@ -30,11 +34,12 @@ Follow the steps below.
     }  
 
     dependencies {  
-        compile 'com.fasterxml.jackson.core:jackson-core:2.8.8'  
-        compile 'com.fasterxml.jackson.core:jackson-databind:2.8.8'  
-        compile 'org.apache.httpcomponents:httpclient:4.5.3'  
-        compile 'com.amazonaws:aws-lambda-java-core:1.1.0'  
-        compile 'com.amazonaws:aws-java-sdk-core:1.11.178'  
+        compile 'com.fasterxml.jackson.core:jackson-annotations:2.12.3'
+        compile 'com.fasterxml.jackson.core:jackson-core:2.12.3'
+        compile 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+        compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:2.12.3'
+        compile 'javax.validation:validation-api:1.0.0.GA'
+        compile 'org.slf4j:slf4j-api:1.7.0'
         compile fileTree(dir: 'libs', include: ['*.jar'])  
     }  
 
